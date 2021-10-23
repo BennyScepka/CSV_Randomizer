@@ -1,0 +1,79 @@
+import csv
+import random
+from tkinter import *
+from tkinter import filedialog
+
+
+# Function for opening the file explorer window
+def browse_files():
+    global filename
+
+    filename = StringVar()
+
+    # Fetch the file path of the csv file browsed
+    if filename == "":
+        filename = filedialog.askopenfilename(initialdir="/", title="Select a File",
+                                              filetypes=(("CSV Files", "*.csv*"),))
+    else:
+        filename = filedialog.askopenfilename(initialdir=filename, title="Select a File",
+                                              filetypes=(("CSV Files", "*.csv*"),))
+    # Change label contents
+    label_file_explorer.configure(text="File Opened: " + filename)
+
+
+# LOGIC
+def rand_user():
+    data = []
+
+    with open(filename, 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        next(csv_reader, None)  # skip the headers
+        for row in csv_reader:
+            data.append(row)
+
+    db_length = len(data)
+    rand_name = random.randint(0, db_length - 1)
+
+    # Go to random entry in column 2 (counting from 0) and assign it to name (Should be the)
+    chosen_name = data[rand_name]
+    chosen_name_str = ' '.join([str(item) for item in chosen_name])
+    # print(chosen_name)
+    label_rand_choose.configure(text="Random user= {0}".format(chosen_name_str))
+
+
+# Create the root window
+window = Tk()
+
+# Set window title
+window.title('CSV-Randomizer')
+
+# Set window size
+window.geometry("500x500")
+
+# Set window background color
+window.config(background="white")
+
+# Create a File Explorer label
+label_file_explorer = Label(window, text="Please select .csv-file", width=100, height=4, fg="blue")
+
+label_rand_choose = Label(window, text="Random user is: ", width=100, height=4, fg="black")
+
+# Create Buttons
+button_explore = Button(window, text="Browse Files", command=browse_files)
+
+button_choose = Button(window, text="Choose Random", command=rand_user)
+
+button_exit = Button(window, text="Exit", command=exit)
+
+# Grid method is chosen for placing
+
+label_file_explorer.grid(column=1, row=1)
+button_explore.grid(column=1, row=3)
+
+label_rand_choose.grid(column=1, row=2)
+button_choose.grid(column=1, row=4)
+
+button_exit.grid(column=1, row=8)
+
+# Let the window wait for any events
+window.mainloop()
