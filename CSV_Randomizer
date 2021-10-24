@@ -2,6 +2,8 @@ import csv
 import random
 from tkinter import *
 from tkinter import filedialog
+from tkinter import font
+from types import CellType
 
 
 # Function for opening the file explorer window
@@ -48,32 +50,40 @@ window = Tk()
 window.title('CSV-Randomizer')
 
 # Set window size
-window.geometry("500x500")
+window.geometry("800x300")
 
 # Set window background color
 window.config(background="white")
 
 # Create a File Explorer label
-label_file_explorer = Label(window, text="Please select .csv-file", width=100, height=4, fg="blue")
+label_file_explorer = Label(window, 
+                            text="Please select .csv-file",
+                            width=100,
+                            height=4,
+                            fg="black",
+                            font=("Calibri",12, "bold"))
 
-label_rand_choose = Label(window, text="Random user is: ", width=100, height=4, fg="black")
+label_rand_choose = Label(window,
+                          text="Random user is: ",
+                          width=100,
+                          height=4,
+                          fg="black",
+                          font=("Calibri", 12, "bold"))
 
 # Create Buttons
 button_explore = Button(window, text="Browse Files", command=browse_files)
 
-button_choose = Button(window, text="Choose Random", command=rand_user)
+button_choose = Button(window, text="Choose Random", command=rand_user) 
 
-button_exit = Button(window, text="Exit", command=exit)
 
 # Grid method is chosen for placing
 
-label_file_explorer.grid(column=1, row=1)
-button_explore.grid(column=1, row=3)
+label_file_explorer.grid(column=0, row=1)
+button_explore.grid(column=0, row=2,sticky=W+E)
 
-label_rand_choose.grid(column=1, row=2)
-button_choose.grid(column=1, row=4)
+label_rand_choose.grid(column=0, row=3)
+button_choose.grid(column=0, row=4,sticky=W+E)
 
-button_exit.grid(column=1, row=8)
 
 # Let the window wait for any events
 window.mainloop()
