@@ -2,9 +2,6 @@ import csv
 import random
 from tkinter import *
 from tkinter import filedialog
-from tkinter import font
-from types import CellType
-
 
 # Function for opening the file explorer window
 def browse_files():
