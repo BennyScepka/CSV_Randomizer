@@ -27,7 +27,7 @@ def browse_files():
 def rand_user():
     data = []
 
-    with open(filename, 'r') as csv_file:
+    with open(filename, 'r', encoding='utf8') as csv_file:
         csv_reader = csv.reader(csv_file)
         next(csv_reader, None)  # skip the headers
         for row in csv_reader:
@@ -36,7 +36,7 @@ def rand_user():
     db_length = len(data)
     rand_name = random.randint(0, db_length - 1)
 
-    # Go to random entry in column 2 (counting from 0) and assign it to name (Should be the)
+    # Go to random entry in column 2 (counting from 0) and assign it to name
     chosen_name = data[rand_name]
     chosen_name_str = ' '.join([str(item) for item in chosen_name])
     # print(chosen_name)
