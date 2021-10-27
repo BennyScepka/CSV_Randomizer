@@ -1,7 +1,6 @@
 # CSV_Randomizer
 
-This tool is able to import a csv file into a simple GUI with Tkinter
-and to choose random one row of the list. 
+This tool is able to import a csv file into a simple GUI with Tkinter and to display a random choosen row of the list. 
 
 How to use: 
 1.)Click on "Browse Files" and choose the .csv file 
